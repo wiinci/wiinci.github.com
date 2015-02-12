@@ -1,0 +1,5 @@
+title: mardav.org
+url: "http://mardav.org"
+markdown: kramdown
+permalink: /:year/:month/:title
+paginate: 9
