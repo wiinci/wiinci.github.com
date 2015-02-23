@@ -1,5 +1,12 @@
 title: mardav.org
-url: "http://mardav.org"
+url: http://mardav.org
 markdown: kramdown
 permalink: /:year/:month/:title
 paginate: 9
+locale: en_US
+
+
+# Patterns
+collections:
+    style-guide:
+        output: false

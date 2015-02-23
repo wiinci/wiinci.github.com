@@ -1,0 +1,17 @@
+---
+layout: default
+title: "Style Guide"
+---
+
+{% assign style = site.style-guide | group_by:"type" %}
+
+{% for type in style %}
+    {% for pattern in type.items %}
+        <section class="pattern-{{ pattern.type }}">
+            <div class="content">
+                <h1>{{ pattern.title }}</h1>
+                {{ pattern.content }}
+            </div>
+        </section>
+    {% endfor %}
+{% endfor %}
