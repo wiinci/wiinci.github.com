@@ -1,0 +1,22 @@
+.generate-columns(@n, @i: 1) when (@i <= @n) {
+    .col-@{i}-@{n} {
+        width: (@i * 100% / @n);
+    }
+
+    .generate-columns(@n, (@i + 1));
+}
+
+.generate-one-column(@n, @i) {
+    .col-@{i}-@{n} {
+        width: (@i * 100% / @n);
+    }
+}
+
+.generate-columns(8);
+.generate-columns(4);
+.generate-columns(3);
+.generate-columns(2);
+.generate-columns(1);
+
+.generate-one-column(6, 1);
+.generate-one-column(6, 5);

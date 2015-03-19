@@ -1,0 +1,101 @@
+// ROW
+.row {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    padding: 0 12px;
+}
+
+
+// GUIDE-SPECIFIC STYLES
+.guide {
+    .col-content { 
+        text-align: center;
+        background: rgba(242, 242, 242, .5);
+        padding: 12px;
+    }
+}
+.content {
+    max-width: 1120px;
+    margin: 0 auto;
+
+}
+
+// COLUMNS
+.col {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    padding: 0 12px;
+    margin: 0 0 12px 0;
+}
+.generate-columns(@n, @i: 1) when (@i < @n) {
+    & when not (@i / @n = .25) { // use col-1-4
+        & when not (@i / @n = .5) { // use col-1-2
+            & when not (@i / @n = .75) { // use col-3-4
+                .col-@{i}-@{n} {
+                    -webkit-flex-basis: (@i * 100% / @n);
+                    flex-basis: (@i * 100% / @n);
+                }
+            }
+        }
+    }
+    .generate-columns(@n, (@i + 1));
+}
+
+.generate-single-column(@i, @n) {
+    .col-@{i}-@{n} {
+        -webkit-flex-basis: (@i * 100% / @n);
+        flex-basis: (@i * 100% / @n);
+    }
+}
+
+.generate-mobile-column(@n, @type) {
+    .col-@{type}-@{n} {
+        -webkit-flex-basis: (100% / @n);
+        flex-basis: (100% / @n);
+    }
+}
+
+.generate-single-column(1, 1);
+.generate-single-column(1, 2);
+.generate-columns(3);
+.generate-single-column(1, 4);
+.generate-single-column(3, 4);
+.generate-single-column(1, 6);
+.generate-single-column(5, 6);
+.generate-columns(8);
+
+@media (max-width: 60em) { // 960px
+    .generate-mobile-column(2, md);
+    .generate-mobile-column(3, md);
+    .generate-mobile-column(4, md);
+    .generate-mobile-column(5, md);
+    .generate-mobile-column(6, md);
+    .generate-mobile-column(7, md);
+    .generate-mobile-column(8, md);
+}
+
+@media (max-width: 40em) { // 640px
+    .generate-mobile-column(1, sm);
+    .generate-mobile-column(2, sm);
+    .generate-mobile-column(3, sm);
+    .generate-mobile-column(4, sm);
+    .generate-mobile-column(5, sm);
+    .generate-mobile-column(6, sm);
+    .generate-mobile-column(7, sm);
+    .generate-mobile-column(8, sm);
+}
+
+@media (max-width: 30em) { // 480px
+    .generate-mobile-column(1, xs);
+    .generate-mobile-column(2, xs);
+    .generate-mobile-column(3, xs);
+    .generate-mobile-column(4, xs);
+    .generate-mobile-column(5, xs);
+    .generate-mobile-column(6, xs);
+    .generate-mobile-column(7, xs);
+    .generate-mobile-column(8, xs);
+}
