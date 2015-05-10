@@ -1,7 +1,9 @@
 // ROW
 .row {
+    display: -ms-flex;
     display: -webkit-flex;
     display: flex;
+    -ms-flex-flow: row wrap;
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     margin: 0 -12px;
@@ -25,8 +27,10 @@
 
 // COLUMNS
 .col {
+    display: -ms-flex;
     display: -webkit-flex;
     display: flex;
+    -ms-flex-direction: column;
     -webkit-flex-direction: column;
     flex-direction: column;
     padding: 0 12px;
@@ -37,6 +41,7 @@
         & when not (@i / @n = .5) { // use col-1-2
             & when not (@i / @n = .75) { // use col-3-4
                 .col-@{i}-@{n} {
+                    -ms-flex-basis: (@i * 100% / @n);
                     -webkit-flex-basis: (@i * 100% / @n);
                     flex-basis: (@i * 100% / @n);
                 }
@@ -48,6 +53,7 @@
 
 .generate-single-column(@i, @n) {
     .col-@{i}-@{n} {
+        -ms-flex-basis: (@i * 100% / @n);
         -webkit-flex-basis: (@i * 100% / @n);
         flex-basis: (@i * 100% / @n);
     }
@@ -66,6 +72,7 @@
 // SMALLER VIEWPORT COLUMNS
 .generate-mobile-column(@n, @type) {
     .col-@{type}-@{n} {
+        -ms-flex-basis: (100% / @n);
         -webkit-flex-basis: (100% / @n);
         flex-basis: (100% / @n);
     }
